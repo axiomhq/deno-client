@@ -3,6 +3,7 @@
 import { throttle, getIngestURL } from './shared.ts';
 import { Client } from './client.ts';
 
+const env = Deno.env.toObject();
 const url = getIngestURL();
 const throttledSendLogs = throttle(sendLogs, 1000);
 
@@ -38,10 +39,17 @@ async function sendLogs() {
         return;
     }
 
-    const client = new Client({ url });
-    await client.ingest({
-        events: logEvents,
-        dataset: 'logs',
-    });
+    try {
+        const client = new Client({ url });
+        const res = await client.ingest({
+            events: logEvents,
+            dataset: env.AXIOM_DATASET,
+        });
+        if (res.status != 200) {
+            console.info(res);
+        }
+    } catch (e) {
+        console.error(e);
+    }
     logEvents = [];
 }

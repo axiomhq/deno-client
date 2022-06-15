@@ -25,29 +25,19 @@ export class Client {
     }
 
     async ingest(params: IngestInput): Promise<Response> {
+        const url = new URL(this.url);
+        url.pathname = `/api/v1/datasets/${params.dataset}/ingest`;
         const body = JSON.stringify(params.events);
-        console.log(body);
         const headers = {
             "Content-Type": "application/json",
             "User-Agent": "axiom-deno",
             "Authorization": `Bearer ${this.apiToken}`,
         };
-        const resp = await fetch(`${this.url}/api/v1/datasets/${params.dataset}/ingest`, {
+        const resp = await fetch(url.toString(), {
             method: "POST",
             headers: headers,
             body,
         });
         return resp;
     }
-}
-
-// create main function
-if (import.meta.main) {
-    const c = new Client();
-    const x = {
-        events: [{ a: 1, b: 2 }, { a: 3, b: 4 }],
-        dataset: env.AXIOM_DATASET,
-    };
-    const resp = await c.ingest(x);
-    console.log(resp);
 }
