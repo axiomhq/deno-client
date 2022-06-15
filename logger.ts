@@ -12,7 +12,7 @@ let logEvents: object[] = [];
 
 function _log(level: string, message: string, args: object = {}) {
     if (!url) {
-        console.warn('axiom: NEXT_PUBLIC_AXIOM_INGEST_ENDPOINT is not defined');
+        console.warn('axiom: no endpoint defined');
         return;
     }
 
