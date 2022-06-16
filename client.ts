@@ -114,6 +114,15 @@ export class Client {
       body,
     });
 
+    if (resp.status != 200) {
+      try {
+        const error = await resp.json();
+        throw new Error(`Query failed: ${error.message}`);
+      } catch (_e) {
+        throw new Error(`Query failed: ${resp.status}`);
+      }
+    }
+
     const res = await resp.json();
 
     return {
