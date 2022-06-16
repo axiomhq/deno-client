@@ -25,5 +25,13 @@ if (import.meta.main) {
         events: [ev1, ev2],
         dataset: env.AXIOM_DATASET,
     });
+
     console.log(resp);
+
+    const x = await c.query({
+        dataset: env.AXIOM_DATASET,
+        apl: "['deno'] | where _time > now(-1d) | summarize count() by bin_auto(_time)",
+    });
+
+    console.log(x);
 }
