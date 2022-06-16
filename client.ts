@@ -26,7 +26,6 @@ interface IngestStatus {
 
 
 interface QueryInput {
-    dataset: string;
     startTime?: Date;
     endTime?: Date;
     apl: string;
