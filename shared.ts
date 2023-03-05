@@ -1,6 +1,6 @@
 // deno-lint-ignore-file ban-types
 
-const env = Deno.env.toObject();
+const AXIOM_URL = Deno.env.get('AXIOM_URL');
 
 export const isBrowser = typeof window !== 'undefined';
 
@@ -10,7 +10,7 @@ export enum EndpointType {
 }
 
 export const getIngestURL = () => {
-    const ingestEndpoint = env.AXIOM_URL || 'https://cloud.axiom.co';
+    const ingestEndpoint = AXIOM_URL || 'https://cloud.axiom.co';
     const url = new URL(ingestEndpoint);
     return url.toString();
 };
