@@ -1,0 +1,5 @@
+{
+  "tasks": {
+    "events": "deno run ./examples/events.ts"
+  }
+}
