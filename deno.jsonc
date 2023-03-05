@@ -1,5 +1,6 @@
 {
   "tasks": {
-    "events": "deno run ./examples/events.ts"
+    "events-example": "deno run ./examples/events.ts",
+    "logs-example": "deno run ./examples/logs.ts"
   }
 }

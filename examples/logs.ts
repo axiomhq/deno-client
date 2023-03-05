@@ -1,4 +1,4 @@
-import { log } from "../logger.ts";
+import { log } from "../mod.ts";
 
 // create main function
 if (import.meta.main) {
