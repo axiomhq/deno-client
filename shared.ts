@@ -1,7 +1,4 @@
 // deno-lint-ignore-file ban-types
-
-const AXIOM_URL = Deno.env.get('AXIOM_URL');
-
 export const isBrowser = typeof window !== 'undefined';
 
 export enum EndpointType {
@@ -9,13 +6,13 @@ export enum EndpointType {
     logs = 'logs',
 }
 
-export const getIngestURL = () => {
-    const ingestEndpoint = AXIOM_URL ?? 'https://cloud.axiom.co';
+export function getIngestURL() {
+    const ingestEndpoint = Deno.env.get('AXIOM_URL') ?? 'https://cloud.axiom.co';
     const url = new URL(ingestEndpoint);
     return url.toString();
 };
 
-export const throttle = (fn: Function, wait: number) => {
+export function throttle(fn: Function, wait: number) {
     let lastFn: ReturnType<typeof setTimeout>, lastTime: number;
     // deno-lint-ignore no-explicit-any
     return function (this: any) {
