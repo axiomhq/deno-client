@@ -29,6 +29,7 @@ interface QueryInput {
   endTime?: Date;
   apl: string;
   option?: Map<string, string>;
+  dataset: string;
   //datasetMap?: Map<string, string>;
 }
 
