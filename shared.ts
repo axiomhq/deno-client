@@ -10,7 +10,7 @@ export enum EndpointType {
 }
 
 export const getIngestURL = () => {
-    const ingestEndpoint = AXIOM_URL || 'https://cloud.axiom.co';
+    const ingestEndpoint = AXIOM_URL ?? 'https://cloud.axiom.co';
     const url = new URL(ingestEndpoint);
     return url.toString();
 };
