@@ -4,7 +4,7 @@ const defaultAxiomEndpoint = "https://cloud.axiom.co";
 // const env = Deno.env.toObject();
 // Deno.env.toObject() might access any env var of the user, 
 // which might be bad for security alerts
-// Therefore: Direct access to the env vars we need
+// Therefore: Directly access the env vars we need
 const AXIOM_URL = Deno.env.get('AXIOM_URL');
 const AXIOM_TOKEN = Deno.env.get('AXIOM_TOKEN')
 
