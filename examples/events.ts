@@ -1,6 +1,7 @@
-import { Client } from "../client.ts";
+import { Client } from "../mod.ts";
 
-const env = Deno.env.toObject();
+const AXIOM_DATASET = Deno.env.get("AXIOM_DATASET");
+if (!AXIOM_DATASET) throw new Error(`You have to set the env var: AXIOM_DATASET for this example!`)
 
 // create main function
 if (import.meta.main) {
@@ -23,13 +24,13 @@ if (import.meta.main) {
 
   const resp = await c.ingest({
     events: [ev1, ev2],
-    dataset: env.AXIOM_DATASET,
+    dataset: AXIOM_DATASET,
   });
 
   console.log(resp);
 
   const x = await c.query({
-    dataset: env.AXIOM_DATASET,
+    dataset: AXIOM_DATASET,
     apl:
       "['deno'] | where _time > now(-1d) | summarize count() by bin_auto(_time)",
   });
