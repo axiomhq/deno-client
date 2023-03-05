@@ -1,7 +1,12 @@
 // deno-lint-ignore-file ban-types
-
-const env = Deno.env.toObject();
 const defaultAxiomEndpoint = "https://cloud.axiom.co";
+
+// const env = Deno.env.toObject();
+// Deno.env.toObject() might access any env var of the user, 
+// which might be bad for security alerts
+// Therefore: Direct access to the env vars we need
+const AXIOM_URL = Deno.env.get('AXIOM_URL');
+const AXIOM_TOKEN = Deno.env.get('AXIOM_TOKEN')
 
 interface IngestOptions {
   timestampField?: string;
@@ -49,8 +54,8 @@ export class Client {
   private apiToken?: string;
 
   constructor(params?: { url?: string; apiToken?: string }) {
-    this.url = params?.url ?? env.AXIOM_URL ?? defaultAxiomEndpoint;
-    this.apiToken = params?.apiToken ?? env.AXIOM_TOKEN;
+    this.url = params?.url ?? AXIOM_URL ?? defaultAxiomEndpoint;
+    this.apiToken = params?.apiToken ?? AXIOM_TOKEN;
   }
 
   async ingest(params: IngestInput): Promise<IngestStatus> {
