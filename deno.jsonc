@@ -1,0 +1,6 @@
+{
+  "tasks": {
+    "events-example": "AXIOM_TOKEN=mytoken AXIOM_DATASET=mydataset deno run -A ./examples/events.ts",
+    "logs-example": "AXIOM_TOKEN=mytoken AXIOM_DATASET=mydataset deno run -A ./examples/logs.ts"
+  }
+}
